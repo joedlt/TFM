@@ -1,0 +1,36 @@
+Cargar las tablas que son TXT en el access
+
+VIAS-NAL y TRAMOS-NAL bajadas del INE adjunto documento word explicativo de las tablas
+
+Crear una variable nueva que es la union de codigos que se encuentran en la tabla VIAS_NAL para crear una clave de union entre las dos tablas
+
+Consulta A0
+SELECT [VIAS-NAL].[Codigo Provincia], [VIAS-NAL].[Codigo municipio], [VIAS-NAL].[Codigo via], [VIAS-NAL].Campo4, [VIAS-NAL].Campo5, [VIAS-NAL].Campo6, [VIAS-NAL].[Tipo via], [VIAS-NAL].Campo8, [VIAS-NAL].[Nombre via], [VIAS-NAL].[Nombre via corto], [Codigo Provincia]+[Codigo municipio]+[Codigo via] AS Clave
+FROM [VIAS-NAL];
+
+creamos la clave de union y un nueva que sera el codigo censal en caso de que lo necesitemos
+
+Consulta A01
+SELECT [TRAMOS-NA].[Codigo Provincia], [TRAMOS-NA].[Codigo municipio], [TRAMOS-NA].Distrito, [TRAMOS-NA].Seccion, [TRAMOS-NA].[Codigo Via], [TRAMOS-NA].[Codigo Postal], [TRAMOS-NA].[Nombre poblacion], [TRAMOS-NA].[Nombre corto], [TRAMOS-NA].[Nombre corto via], [Codigo Provincia]+[Codigo municipio]+[Codigo Via] AS Clave, [Codigo Provincia]+[Codigo municipio]+[Distrito]+[Seccion] AS [Codigo Censal]
+FROM [TRAMOS-NA]
+GROUP BY [TRAMOS-NA].[Codigo Provincia], [TRAMOS-NA].[Codigo municipio], [TRAMOS-NA].Distrito, [TRAMOS-NA].Seccion, [TRAMOS-NA].[Codigo Via], [TRAMOS-NA].[Codigo Postal], [TRAMOS-NA].[Nombre poblacion], [TRAMOS-NA].[Nombre corto], [TRAMOS-NA].[Nombre corto via], [Codigo Provincia]+[Codigo municipio]+[Codigo Via], [Codigo Provincia]+[Codigo municipio]+[Distrito]+[Seccion];
+
+
+unir la dos tablas y las varaibles que utilizaremos
+
+Consulta A02
+
+SELECT A01.[Codigo Provincia], A01.[Codigo municipio], A01.Distrito, A01.Seccion, A01.[Codigo Postal], A01.[Codigo Censal], A01.[Nombre poblacion], A0.[Tipo via], A0.[Nombre via], A0.[Nombre via corto], A01.Clave
+FROM A01 LEFT JOIN A0 ON A01.Clave = A0.Clave
+GROUP BY A01.[Codigo Provincia], A01.[Codigo municipio], A01.Distrito, A01.Seccion, A01.[Codigo Postal], A01.[Codigo Censal], A01.[Nombre poblacion], A0.[Tipo via], A0.[Nombre via], A0.[Nombre via corto], A01.Clave;
+
+
+Filtramos solo las poblaciones que utilizaremos para el proyecto Murcia, Palma de Mallorca y Granada
+
+Consulta A03
+SELECT A02.[Codigo Provincia], A02.[Codigo municipio], A02.Distrito, A02.Seccion, A02.[Codigo Postal], A02.[Codigo Censal], A02.[Nombre poblacion], A02.[Tipo via], A02.[Nombre via], A02.[Nombre via corto], A02.Clave
+FROM A02
+WHERE (((A02.[Nombre poblacion]) In ('MURCIA','GRANADA','PALMA')))
+GROUP BY A02.[Codigo Provincia], A02.[Codigo municipio], A02.Distrito, A02.Seccion, A02.[Codigo Postal], A02.[Codigo Censal], A02.[Nombre poblacion], A02.[Tipo via], A02.[Nombre via], A02.[Nombre via corto], A02.Clave;
+
+
