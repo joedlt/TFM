@@ -1,0 +1,30 @@
+Sub generateKML()
+Set FilePath = [File_details!C2]
+Set docName = [File_details!C3]
+
+Open FilePath For Output As #1
+
+outputText = [File_details!C5] & docName & [File_details!C6]
+Print #1, outputText
+For Each cell In [Data!A2.A50001]
+
+pmName = cell.Offset(0, 0)
+pmAddress = cell.Offset(0, 1)
+pmDescription = cell.Offset(0, 2)
+
+If pmName = "" Then
+Exit For
+End If
+
+outputText = [File_details!C8] & pmName & [File_details!C9] & pmAddress & [File_details!C10] & pmDescription & [File_details!C11]
+
+
+Print #1, outputText
+Next
+
+outputText = [File_details!C12]
+Print #1, outputText
+Close #1
+
+
+End Sub
