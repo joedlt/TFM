@@ -1,0 +1,128 @@
+********************MODIFICAR LOS NAN EN LA TABLA OPER_TPV******************************
+
+
+UPDATE "Ope_tpv"
+SET "Importe"= '0'
+WHERE "Importe"='NaN';
+
+
+
+*************TABLA INFORMACION CLIENTES DE TARJETAS**********************************
+
+CREATE TABLE public."Clientes_tarjetas"
+(
+    "Cod_persona" character varying COLLATE pg_catalog."default",
+    "Sexo" character varying COLLATE pg_catalog."default",
+    "Edad" character varying COLLATE pg_catalog."default",
+    "Cod_postal" character varying COLLATE pg_catalog."default"
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."Clientes_tarjetas"
+    OWNER to postgres;
+
+COPY "Bines" FROM 'C:/Users/Jose/Documents/Master Data Science/TFM/BINES_PAIS.txt' DELIMITER AS ';' QUOTE '"'HEADER CSV ENCODING'Latin1' ;
+
+
+
+
+****************TABLA INFORMACION  PERSONA Y TARJETA**********************
+
+CREATE TABLE public."Persona_tarjeta"
+(
+    "Cod_persona" character varying COLLATE pg_catalog."default",
+    "Cod_tarjeta" character varying COLLATE pg_catalog."default"
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."Persona_tarjeta"
+    OWNER to postgres;
+
+COPY "Persona_tarjeta" FROM 'C:/Users/Jose/Documents/Master Data Science/TFM/Persona_tarjeta.txt' DELIMITER AS ';' 
+QUOTE '"'HEADER CSV;
+
+
+
+***********************TABLA BINES******************************************************
+
+CREATE TABLE public."Bines"
+(
+    "Bin" character varying COLLATE pg_catalog."default",
+    "Pais" character varying COLLATE pg_catalog."default"
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."Bines"
+    OWNER to postgres;
+
+COPY "Bines" FROM 'C:/Users/Jose/Documents/Master Data Science/TFM/BINES_PAIS.txt' DELIMITER AS ';' QUOTE '"'HEADER CSV ENCODING'Latin1' ;
+
+
+
+******************************************TABLA COMERCIOS PROPIOS********************************************
+
+CREATE TABLE public."Comercios_propios"
+(
+    "Cod_comercio" character varying COLLATE pg_catalog."default",
+    "Sub_sector" character varying COLLATE pg_catalog."default",
+    "Sector" character varying COLLATE pg_catalog."default",
+    "Cod_postal" character varying COLLATE pg_catalog."default",
+    "Log" double precision,
+    "Lat" double precision
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."Comercios_propios"
+    OWNER to postgres;
+
+
+COPY "Comercios_propios" FROM 'C:/Users/Jose/Documents/Master Data Science/TFM/Comercios_BDD.txt'
+DELIMITER AS ';' QUOTE '"'HEADER CSV ENCODING'Latin1' ;
+
+
+******************************FECHAS ***************************************************
+
+CREATE TABLE public."Fechas"
+(
+    "Fecha" character varying COLLATE pg_catalog."default",
+    "Dia" character varying COLLATE pg_catalog."default",
+    "Mes" character varying COLLATE pg_catalog."default",
+    "Año" character varying COLLATE pg_catalog."default",
+    "Hora" character varying COLLATE pg_catalog."default"
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."Fechas"
+    OWNER to postgres;
+
+
+COPY "Fechas" FROM 'C:/Users/Jose/Documents/Master Data Science/TFM/Fechas.txt'
+DELIMITER AS ';' QUOTE '"'HEADER CSV ENCODING'Latin1' ;
+
+
+
+****************** PARA LOS DATOS COMPARTIVOS ENTRE COMERCIOS Y COMPETENCIA SE TOMA LOS ULTIMOS 12 MESES******
+******************PARA ELLO SE FILTRAN LAS TABLAS OPE_TARJETAS Y OPE_TPVS Y SE CREAN DOS TABLAS************************
+
+
+
+CREATE TABLE "Comercios_TPV" AS SELECT * FROM "Ope_tpv" WHERE "Dia"::date > '2016-03-31';
+CREATE TABLE"Comercios_Tarjetas" AS SELECT FROM"Ope_tarjetas" WHERE "Dia"::date > '2016-03-31';
+
+
+
