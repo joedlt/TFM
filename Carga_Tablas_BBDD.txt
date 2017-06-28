@@ -126,3 +126,13 @@ CREATE TABLE"Comercios_Tarjetas" AS SELECT FROM"Ope_tarjetas" WHERE "Dia"::date 
 
 
 
+
+************************TABLA PARA SEGMENTACION COMERCIOS PARA LA DEMO******************************************
+SELECT "Cod_comercio", "Cod_tarjeta", "Dia",Sum("Importe") AS "Venta"
+FROM "Ope_tpv" WHERE "Cod_comercio" IN('000160523','325013340','100372176','063404321','017156043','079062071',
+                                       '100082395')
+GROUP BY "Cod_comercio", "Cod_tarjeta", "Dia" ;
+
+LUEGO SE HA GUARDADO EN UN TXT NOMBRE comercios_segmentacion.txt
+
+
