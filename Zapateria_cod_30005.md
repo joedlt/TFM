@@ -6,7 +6,7 @@ Jose
 
 Se utiliza las operaciones en el TPV de 24 meses para segmentar a los clientes del comercio, tomando como clientes el código de tarjeta.
 Se realiza una segmentación de RFM (Recencia, Frecuencia , Monto).
-Se utilizaran los primeros 12 meses para efecturar un tranning de la segmentación y los siguientes 12 meses como test.
+Se utilizaran los primeros 12 meses para efecturar un tranning de la segmentación y los siguientes 12 meses como test y cross validation.
 
 Primero se cargan los datos y se hace una inspección de los mismos 
 
@@ -333,5 +333,5 @@ RFM_comercio$tipo_cliente<-ifelse(RFM_comercio$Segmento_1==0 & RFM_comercio$Segm
 RFM_comercio$Des_seg<-ifelse(RFM_comercio$Segmento_2==1,"CLIENTES MAS COMPRAS",ifelse(RFM_comercio$Segmento_2==0,"CLIENTES PERDIDOS",ifelse
                                                                                       (RFM_comercio$Segmento_2==2,"POSIBLE ABANDONO",ifelse(RFM_comercio$Segmento_2==3,"ANTIGUOS",ifelse(RFM_comercio$Segmento_2==4,"HISTORICO",ifelse(RFM_comercio$Segmento_2==5,"RECIENTES","MAYOR COMPRA MEDIA"))))))
 ```
-Y por último se guarda el Dataframe en un fichero txt para luego ser usado en el cuadro de visualización
+Y por último se guarda el Dataframe en un fichero txt para luego ser usado en el cuadro de visualización.
 El proceso se repetirá para los otros comercios que se escogieron para la Demo.
