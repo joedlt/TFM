@@ -76,7 +76,7 @@ CREATE TABLE public."Comercios_propios"
     "Sub_sector" character varying COLLATE pg_catalog."default",
     "Sector" character varying COLLATE pg_catalog."default",
     "Cod_postal" character varying COLLATE pg_catalog."default",
-    "Log" double precision,
+    "Long" double precision,
     "Lat" double precision
 )
 WITH (
@@ -128,6 +128,8 @@ CREATE TABLE"Comercios_Tarjetas" AS SELECT FROM"Ope_tarjetas" WHERE "Dia"::date 
 
 
 ************************TABLA PARA SEGMENTACION COMERCIOS PARA LA DEMO******************************************
+
+
 SELECT "Cod_comercio", "Cod_tarjeta", "Dia",Sum("Importe") AS "Venta"
 FROM "Ope_tpv" WHERE "Cod_comercio" IN('000160523','325001402','100372176','116054396','327635322','079062071')
 GROUP BY "Cod_comercio", "Cod_tarjeta", "Dia" ;
