@@ -347,4 +347,4 @@ table(RFM_comercio$Segmento_1,RFM_comercio$Segmento_2)
 ##   6  127    2    4    9   11   14   14
 ```
 Y por último se guarda el Dataframe en un fichero txt para luego ser usado en el cuadro de visualización.
-El proceso se repetirá para los otros comercios que se escogieron para la Demo.
+El proceso se repetirá para los otros comercios que se escogieron para la Demo, luego se uniran los ficheros siguiendo el siguiente commando en windows shell "for %f in (*.txt) do type "%f" >> Segmentacion_comercios.txt.", para luego ser subido este dataframe a la base de datos en postgresql. 
