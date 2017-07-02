@@ -136,4 +136,30 @@ GROUP BY "Cod_comercio", "Cod_tarjeta", "Dia" ;
 
 LUEGO SE HA GUARDADO EN UN TXT NOMBRE comercios_segmentacion.txt
 
+*******************************************************TABLA CON SEGMENTOS ***************************************
 
+Se unen los ficheros obtenidos en la segmentacion en R en windows con el comando for %f in (*.txt) do type "%f" >> Segmentación_comercios.txt.
+
+Se crea la tabla en Postgresql 
+
+CREATE TABLE public."Segmentacion"
+(
+    "Cod_tarjeta" character varying COLLATE pg_catalog."default",
+    "Segmento_1" bigint,
+    "Segmento_2" bigint,
+    "Cod_comercio" character varying COLLATE pg_catalog."default",
+    "Tipo_cliente" character varying COLLATE pg_catalog."default",
+    "Descripcion_segmento" character varying COLLATE pg_catalog."default"
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."Segmentacion"
+    OWNER to postgres;
+
+Se carga la tabla
+
+COPY "Segmentacion" FROM 'C:/Users/Jose/Documents/Master Data Science/TFM/Segmentacion/Ficheros/Segmentacion_comercios.txt'
+DELIMITER AS ';' QUOTE '"'CSV ENCODING'Latin1' ;
