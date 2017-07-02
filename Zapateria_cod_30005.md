@@ -116,7 +116,7 @@ RFM_comer_2= summarise(group_by(comercio_1[comercio_1$Dia<Fecha_2 & comercio_1$D
 )
 ```
 Se realiza un gráfico de inspección de la relación de las varibles de RFM entre ellas
-<img src="C:/Users/Jose/Documents/Master Data Science/TFM/Segmentacion/Zapateria Cod Postal 30005.png">
+<img src="https://github.com/joedlt/Master2016/blob/master/Zapateria%20Cod%20Postal%2030005.png">
 Ahora se normalizan las variables
 
 
@@ -133,7 +133,7 @@ for (i in 2:15) elb[i] <- sum(kmeans(misdatos,
                                      centers=i)$withinss)
 ```
 La gráfica no muestra un punto óptimo diferenciado, existen dos puntos de inflexión como lo son el 3 y el 6.
-<img src="C:/Users/Jose/Documents/Master Data Science/TFM/Segmentacion/Zapateria cod 30005 metodo del codo.png">
+<img src="https://github.com/joedlt/Master2016/blob/master/Zapateria%20cod%2030005%20metodo%20del%20codo.png">
 
 
 
@@ -149,7 +149,6 @@ library(NbClust)
 nc <- NbClust(RFM_comer_1_norm, min.nc=3, max.nc=9, method="kmeans")
 ```
 
-![](Zapateria_cod_30005_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
 ```
 ## *** : The Hubert index is a graphical method of determining the number of clusters.
@@ -159,7 +158,7 @@ nc <- NbClust(RFM_comer_1_norm, min.nc=3, max.nc=9, method="kmeans")
 ## 
 ```
 
-![](Zapateria_cod_30005_files/figure-html/unnamed-chunk-6-2.png)<!-- -->
+
 
 ```
 ## *** : The D index is a graphical method of determining the number of clusters. 
@@ -195,7 +194,7 @@ table(nc$Best.n[1,])
 ```
 Aunque el modelo recomienda un k=3,observando el gráfico de barras se ve claramente que tambien existe otro óptimo el 6.
 
-<img src="C:/Users/Jose/Documents/Master Data Science/TFM/Segmentacion/Zapateria Cod Postal 30005 NbClust.png">
+<img src="https://github.com/joedlt/Master2016/blob/master/Zapateria%20Cod%20Postal%2030005%20NbClust.png">
 
 Así que se ejecutan los dos modelos el k=3 y k=6 ya que no esta del todo claro cual usar y luego mediante análisis gráfico y el de los centroides se optará por el k que más sentido tenga.
 
@@ -227,7 +226,7 @@ aggregate(RFM_comer_1[,-1], by = list(Segments), mean)
 ```
 El gráfico
 
-<img src="C:/Users/Jose/Documents/Master Data Science/TFM/Segmentacion/Zapateria Cod Postal 30005 Clustering Kmeans para 3 CLUSTERS del Modelo RFM 12M.png">
+<img src="https://github.com/joedlt/Master2016/blob/master/Zapateria%20Cod%20Postal%2030005%20Clustering%20Kmeans%20para%203%20CLUSTERS%20del%20Modelo%20RFM%2012M.png">
 
 Ahora el k=6
 
@@ -263,7 +262,7 @@ aggregate(RFM_comer_1[,-1], by = list(Segments), mean)
 ```
 El gráfico
 
-<img src="C:/Users/Jose/Documents/Master Data Science/TFM/Segmentacion/Zapateria Cod Postal 30005 Clustering Kmeans para 6 CLUSTERS del Modelo RFM 12M.png">
+<img src="https://github.com/joedlt/Master2016/blob/master/Zapateria%20Cod%20Postal%2030005%20Clustering%20Kmeans%20para%206%20CLUSTERS%20del%20Modelo%20RFM%2012M.png">
 
 Se puede ver que tanto los centroides del modelo  como el gráfico de scatter plot de k=6 es el que más sentido tiene para este analisis y por lo tanto será el utilizado en la segmentación.
 
