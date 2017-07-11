@@ -42,6 +42,8 @@ mtext("Densidad de clientes mediante Modelo RFM 12 meses ", outer = TRUE, cex = 
 dev.off()
 
 
+##Normalización Variables RFM###
+
 RFM_comer_1_norm<-scale(RFM_comer_1[,-1])
 
 
@@ -158,7 +160,7 @@ RFM_comercio$Segmento_2[is.na(RFM_comercio$Segmento_2)]=0
 RFM_comercio$Cod_comercio<-Comercio
 RFM_comercio$tipo_cliente<-ifelse(RFM_comercio$Segmento_1==0 & RFM_comercio$Segmento_2!=0 ,"NUEVOS",ifelse(RFM_comercio$Segmento_1!=0 & RFM_comercio$Segmento_2==0,"PERDIDOS","SE MANTIENEN"))
 Seg_num<-c(0,1,2,3,4,5)
-Des_seg<-c("PERDIDOS","RECIENTES","MAYOR GASTO MEDIO","CLIENTE ESPORADICO","CLIENTE POCO FRECUENTE","CLIENTES MAS COMPRAS")
+Des_seg<-c("PERDIDOS","RECIENTES","MAYOR COMPRA MEDIA","CLIENTE ESPORADICO","CLIENTE POCO FRECUENTE","CLIENTES MAS COMPRAS")
 Seg_Des<-data.frame(Seg_num,Des_seg)
 RFM_comercio<-merge(x=RFM_comercio, y=Seg_Des,by.x = "Segmento_2",by.y = "Seg_num",all.x = TRUE)
 RFM_comercio<-RFM_comercio[,c(2,3,1,4,5,6)]

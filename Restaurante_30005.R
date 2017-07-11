@@ -41,6 +41,8 @@ smoothScatter(RFM_comer_1$RECENCIA,RFM_comer_1$MONETIZACION, xlab="RECENCIA",yla
 mtext("Densidad de clientes mediante Modelo RFM 12 meses ", outer = TRUE, cex = 2)
 dev.off()
 
+##Normalizacion de variables RFM##
+
 
 RFM_comer_1_norm<-scale(RFM_comer_1[,-1])
 
@@ -153,7 +155,7 @@ RFM_comercio$Segmento_2[is.na(RFM_comercio$Segmento_2)]=0
 RFM_comercio$Cod_comercio<-Comercio
 RFM_comercio$tipo_cliente<-ifelse(RFM_comercio$Segmento_1==0 & RFM_comercio$Segmento_2!=0 ,"NUEVOS",ifelse(RFM_comercio$Segmento_1!=0 & RFM_comercio$Segmento_2==0,"PERDIDOS","SE MANTIENEN"))
 Seg_num<-c(0,1,2,3,4,5)
-Des_seg<-c("PERDIDOS","RECIENTE","CLIENTE ANTIGUO","CLIENTE FRECUENCIA MEDIA","POSIBLE ABANDONO","MAYOR COMPRA MEDIA")
+Des_seg<-c("PERDIDOS","RECIENTES","CLIENTE ANTIGUO","CLIENTE FRECUENCIA MEDIA","POSIBLE ABANDONO","MAYOR COMPRA MEDIA")
 Seg_Des<-data.frame(Seg_num,Des_seg)
 RFM_comercio<-merge(x=RFM_comercio, y=Seg_Des,by.x = "Segmento_2",by.y = "Seg_num",all.x = TRUE)
 RFM_comercio<-RFM_comercio[,c(2,3,1,4,5,6)]

@@ -40,6 +40,8 @@ mtext("Densidad de clientes mediante Modelo RFM 12 meses ", outer = TRUE, cex = 
 dev.off()
 
 
+## Normalización Varibles RFM##
+
 RFM_comer_1_norm<-scale(RFM_comer_1[,-1])
 
 

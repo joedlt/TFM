@@ -1,4 +1,4 @@
-********************MODIFICAR LOS NAN EN LA TABLA OPER_TPV******************************
+********************MODIFICAR LOS NAN EN LA TABLA OPE_tpv******************************
 
 
 UPDATE "Ope_tpv"
@@ -163,3 +163,105 @@ Se carga la tabla
 
 COPY "Segmentacion" FROM 'C:/Users/Jose/Documents/Master Data Science/TFM/Segmentacion/Ficheros/Segmentacion_comercios.txt'
 DELIMITER AS ';' QUOTE '"'CSV ENCODING'Latin1' ;
+
+
+
+******LUEGO SE CREA OTRA TABLA CON LA INFORMACION DEMOGRAFICA DE LOS CLIENTES CON TARJETA BMN*********
+
+
+**********************************Tabla Segmentacion_cliente*******************************************
+
+CREATE TEMP TABLE  "temp_2" AS SELECT
+"Segmentacion"."Cod_tarjeta", "Segmentacion"."Tipo_cliente","Segmentacion"."Descripcion_segmento",
+"Segmentacion"."Cod_comercio","Persona_tarjeta"."Cod_persona" FROM "Segmentacion" 
+LEFT JOIN "Persona_tarjeta" ON "Segmentacion"."Cod_tarjeta" = "Persona_tarjeta"."Cod_tarjeta" GROUP BY "Segmentacion"."Cod_tarjeta",
+"Segmentacion"."Tipo_cliente","Segmentacion"."Descripcion_segmento","Segmentacion"."Cod_comercio",
+"Persona_tarjeta"."Cod_persona";
+
+CREATE TABLE "Segmentacion_cliente" AS SELECT
+"temp_2"."Cod_tarjeta","temp_2"."Tipo_cliente","temp_2"."Descripcion_segmento","temp_2"."Cod_comercio",
+"temp_2"."Cod_persona","Clientes_tarjetas"."Sexo","Clientes_tarjetas"."Edad","Clientes_tarjetas"."Cod_postal_cliente" FROM
+"temp_2" LEFT JOIN "Clientes_tarjetas" ON "temp_2"."Cod_persona"="Clientes_tarjetas"."Cod_persona"
+GROUP BY "temp_2"."Cod_tarjeta","temp_2"."Tipo_cliente","temp_2"."Descripcion_segmento","temp_2"."Cod_comercio",
+"temp_2"."Cod_persona","Clientes_tarjetas"."Sexo","Clientes_tarjetas"."Edad","Clientes_tarjetas"."Cod_postal_cliente";
+
+
+
+************************************MODIFICACION Y CREACION DE TABLAS PARA LA VISUALIZACION*****************************
+
+
+CREACCION DE TABLAS
+
+*************************Tabla Competencia*******************************************************
+
+CREATE TABLE "Comercios_Competencia" AS SELECT 
+"Dia" AS "Fecha","Hora","Dia_semana" AS "Dia","Mes","Año","Sub_sector","Cod_postal",SUM("Importe") AS "Competencia"
+FROM "Comercios_Tarjetas" GROUP BY
+"Dia","Hora","Dia_semana","Mes","Año","Sub_sector","Cod_postal";
+
+************************************** Tabla Comercios_BMN****************************************
+
+CREATE TEMP TABLE  "temp_1" AS SELECT
+ "Fechas"."Fecha","Fechas"."Dia", "Fechas"."Mes", "Fechas"."Año", "Fechas"."Hora", "Comercios_propios"."Cod_comercio", "Comercios_propios"."Sub_sector",
+"Comercios_propios"."Cod_postal" FROM "Fechas", "Comercios_propios" GROUP BY "Fechas"."Fecha","Fechas"."Dia",
+"Fechas"."Mes","Fechas"."Año", "Fechas"."Hora","Comercios_propios"."Cod_comercio","Comercios_propios"."Sub_sector",
+"Comercios_propios"."Cod_postal" ;
+
+CREATE TABLE "Comercios_BMN" AS SELECT
+"temp_1","Fecha","temp_1"."Dia","temp_1"."Mes","temp_1"."Año", "temp_1"."Hora","temp_1"."Cod_comercio","temp_1"."Sub_sector",
+"temp_1"."Cod_postal", "Comercios_TPV"."Importe","Comercios_TPV"."Bin","Comercios_TPV"."Cod_tarjeta" FROM "temp_1" LEFT JOIN "Comercios_TPV" ON 
+"temp_1"."Cod_comercio"="Comercios_TPV"."Cod_comercio" AND "temp_1"."Fecha"="Comercios_TPV"."Dia" AND "temp_1"."Hora" = "Comercios_TPV"."Hora"
+GROUP BY "temp_1","Fecha","temp_1"."Dia","temp_1"."Mes","temp_1"."Año", "temp_1"."Hora","temp_1"."Cod_comercio","temp_1"."Sub_sector",
+"temp_1"."Cod_postal", "Comercios_TPV"."Importe","Comercios_TPV"."Bin","Comercios_TPV"."Cod_tarjeta";
+
+
+
+*****************************************Comercios_DEMO*******************************************************************
+
+
+CREATE TABLE "Comercios_BMN_DEMO" AS SELECT
+* FROM "Comercios_BMN" WHERE "Cod_comercio"
+ IN('000160523','325001402','100372176','116054396','079062071','327635322');
+
+
+
+
+
+*******************************Tabla Clientes Perdidos**********************************************************
+
+CREATE TEMP TABLE"temp_3" AS
+SELECT "Cod_comercio", "Cod_tarjeta",LEFT("Cod_tarjeta",6) AS "Bin" FROM "Segmentacion_cliente"
+WHERE "Tipo_cliente"='PERDIDOS' GROUP BY "Cod_comercio","Cod_tarjeta";
+
+CREATE TEMP TABLE "temp_4" AS
+SELECT "Fecha","Dia","Mes","Año","Hora","Cod_comercio","Sub_sector","Cod_postal" FROM "Comercios_BMN_DEMO"
+WHERE "Fecha"=(SELECT MIN("Fecha")FROM "Comercios_BMN_DEMO") AND "Hora"=(SELECT MIN("Hora")FROM "Comercios_BMN_DEMO");
+
+CREATE TABLE "Clientes_perdidos" AS
+SELECT "temp_4"."Fecha","temp_4"."Dia","temp_4"."Mes","temp_4"."Año","temp_4"."Hora","temp_4"."Cod_comercio",
+"temp_4"."Sub_sector","temp_4"."Cod_postal",NULL::double precision AS "Importe","temp_3"."Cod_tarjeta",
+"temp_3"."Bin" FROM "temp_4" INNER JOIN "temp_3" ON "temp_4"."Cod_comercio"="temp_3"."Cod_comercio" GROUP BY
+"temp_4"."Fecha","temp_4"."Dia","temp_4"."Mes","temp_4"."Año","temp_4"."Hora","temp_4"."Cod_comercio","temp_4"."Sub_sector",
+"temp_4"."Cod_postal","Importe","temp_3"."Cod_tarjeta","temp_3"."Bin";
+
+
+******************************************MODIFICACION TABLA "Comercios_BMN_DEMO*********************
+
+INSERT INTO "Comercios_BMN_DEMO"
+SELECT * FROM "Clientes_perdidos";
+
+
+
+****************************Tabla Consumo_clientes**********************************************************
+
+CREATE TABLE "Consumo_clientes_DEMO" AS
+SELECT "Comercios_BMN_DEMO"."Cod_tarjeta","Comercios_Tarjetas"."Sector" AS "SC",
+"Comercios_BMN_DEMO"."Cod_comercio","Comercios_Tarjetas"."Importe"
+AS "Importe"FROM "Comercios_Tarjetas" INNER JOIN "Comercios_BMN_DEMO" ON 
+"Comercios_Tarjetas"."Cod_tarjeta"="Comercios_BMN_DEMO"."Cod_tarjeta" GROUP BY
+"Comercios_BMN_DEMO"."Cod_tarjeta","Comercios_Tarjetas"."Sector",
+"Comercios_BMN_DEMO"."Cod_comercio","Comercios_Tarjetas"."Importe";
+
+
+
+
