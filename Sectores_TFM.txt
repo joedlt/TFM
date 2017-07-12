@@ -1,0 +1,233 @@
+|Cod_sector|;|Sub_sector|;|Sector|
+|1343|;|Hoteles|;|Alojamiento|
+|1346|;|Estaciones de servicio|;|Transporte|
+|1347|;|Restauración|;|Bares y Restaurantes|
+|1348|;|Medios de Transporte|;|Transporte|
+|1349|;|Restauración|;|Bares y Restaurantes|
+|1350|;|Supermercados|;|Hipermercados y grandes superficies|
+|1353|;|Supermercados|;|Hipermercados y grandes superficies|
+|1354|;|Supermercados|;|Hipermercados y grandes superficies|
+|1355|;|Ropa y Complementos|;|Moda|
+|1356|;|Tiendas de deportes|;|Deportes y Juguetes|
+|1357|;|Tiendas de bebé|;|Moda|
+|1358|;|Ropa y Complementos|;|Moda|
+|1361|;|Electrodomésticos|;|Hipermercados y grandes superficies|
+|1362|;|Supermercados|;|Hipermercados y grandes superficies|
+|1363|;|Supermercados|;|Hipermercados y grandes superficies|
+|1364|;|Estaciones de servicio|;|Transporte|
+|1366|;|Supermercados|;|Hipermercados y grandes superficies|
+|1367|;|Estaciones de servicio|;|Transporte|
+|1368|;|Gourmet y Delicatessen|;|Alimentación|
+|1369|;|Medios de Transporte|;|Transporte|
+|1370|;|Supermercados|;|Hipermercados y grandes superficies|
+|1371|;|Ropa y Complementos|;|Moda|
+|1373|;|Supermercados|;|Hipermercados y grandes superficies|
+|1375|;|Medios de Transporte|;|Transporte|
+|1376|;|Parkings|;|Transporte|
+|1379|;|Supermercados|;|Hipermercados y grandes superficies|
+|1380|;|Medios de Transporte|;|Transporte|
+|1383|;|Ropa y Complementos|;|Moda|
+|1390|;|Supermercados|;|Hipermercados y grandes superficies|
+|1391|;|Perfumería y cosmética|;|Cuidado y Belleza|
+|1392|;|Ropa y Complementos|;|Moda|
+|1394|;|Ropa y Complementos|;|Moda|
+|1395|;|Supermercados|;|Hipermercados y grandes superficies|
+|1397|;|Supermercados|;|Hipermercados y grandes superficies|
+|1398|;|Hoteles|;|Alojamiento|
+|1399|;|Restauración|;|Bares y Restaurantes|
+|1400|;|Supermercados|;|Hipermercados y grandes superficies|
+|1401|;|Supermercados|;|Hipermercados y grandes superficies|
+|1402|;|Supermercados|;|Hipermercados y grandes superficies|
+|1403|;|Supermercados|;|Hipermercados y grandes superficies|
+|1405|;|Supermercados|;|Hipermercados y grandes superficies|
+|1406|;|Ropa y Complementos|;|Moda|
+|1409|;|Supermercados|;|Hipermercados y grandes superficies|
+|1410|;|Supermercados|;|Hipermercados y grandes superficies|
+|1411|;|Supermercados|;|Hipermercados y grandes superficies|
+|1413|;|Supermercados|;|Hipermercados y grandes superficies|
+|1415|;|Supermercados|;|Hipermercados y grandes superficies|
+|1416|;|Tiendas de deportes|;|Deportes y Juguetes|
+|1417|;|Perfumería y cosmética|;|Cuidado y Belleza|
+|1418|;|Supermercados|;|Hipermercados y grandes superficies|
+|1420|;|Estaciones de servicio|;|Transporte|
+|1421|;|Electrodomésticos|;|Hipermercados y grandes superficies|
+|1422|;|Ferretería y Bricolaje|;|Hogar|
+|1423|;|Supermercados|;|Hipermercados y grandes superficies|
+|1424|;|Imagen, sonido e informática|;|Hipermercados y grandes superficies|
+|1425|;|Medios de Transporte|;|Transporte|
+|1427|;|Imagen, sonido e informática|;|Electrónica e Informática|
+|1428|;|Restauración|;|Bares y Restaurantes|
+|1429|;|Imagen, sonido e informática|;|Electrónica e Informática|
+|1430|;|Juguetería y ocio|;|Deportes y Juguetes|
+|1431|;|Taller y Automoción|;|Transporte|
+|1433|;|Alquiler de vehículos|;|Transporte|
+|1434|;|Supermercados|;|Hipermercados y grandes superficies|
+|1435|;|Electrodomésticos|;|Hogar|
+|1436|;|Ropa y Complementos|;|Moda|
+|1438|;|Menaje|;|Hogar|
+|1439|;|Ropa y Complementos|;|Moda|
+|1440|;|Taller y Automoción|;|Transporte|
+|1442|;|Juguetería y ocio|;|Deportes y Juguetes|
+|1443|;|Taller y Automoción|;|Transporte|
+|1447|;|Joyería y Relojería|;|Moda|
+|1450|;|Ropa y Complementos|;|Moda|
+|1451|;|Taller y Automoción|;|Transporte|
+|1452|;|Zapaterías|;|Moda|
+|1455|;|Imagen, sonido e informática|;|Electrónica e Informática|
+|1457|;|Ferretería y Bricolaje|;|Hipermercados y grandes superficies|
+|1458|;|Hoteles|;|Alojamiento|
+|1459|;|Ropa y Complementos|;|Moda|
+|1460|;|Muebles y decoración|;|Hogar|
+|1462|;|Muebles y decoración|;|Hipermercados y grandes superficies|
+|1463|;|Menaje|;|Hipermercados y grandes superficies|
+|1465|;|Golosinas|;|Alimentación|
+|1466|;|Cocina|;|Hogar|
+|1468|;|Ropa y Complementos|;|Moda|
+|1469|;|Taller y Automoción|;|Transporte|
+|1470|;|Imagen, sonido e informática|;|Hipermercados y grandes superficies|
+|1471|;|Floristería|;|Hipermercados y grandes superficies|
+|1472|;|Perfumería y cosmética|;|Hipermercados y grandes superficies|
+|1473|;|Ferretería y Bricolaje|;|Hogar|
+|1475|;|Electrodomésticos|;|Hogar|
+|1476|;|Alojamientos Rurales|;|Alojamiento|
+|1480|;|Ferretería y Bricolaje|;|Hogar|
+|1487|;|Muebles y decoración|;|Hogar|
+|1488|;|Ropa y Complementos|;|Moda|
+|1493|;|Tiendas de deportes|;|Deportes y Juguetes|
+|1496|;|Hoteles|;|Alojamiento|
+|1521|;|Estaciones de servicio|;|Transporte|
+|1522|;|Estaciones de servicio|;|Transporte|
+|1524|;|Estaciones de servicio|;|Transporte|
+|1525|;|Estaciones de servicio|;|Transporte|
+|1527|;|Estaciones de servicio|;|Transporte|
+|1528|;|Estaciones de servicio|;|Transporte|
+|1529|;|Estaciones de servicio|;|Transporte|
+|1530|;|Estaciones de servicio|;|Transporte|
+|1531|;|Estaciones de servicio|;|Transporte|
+|2013|;|Hoteles|;|Alojamiento|
+|2014|;|Hoteles|;|Alojamiento|
+|2111|;|Medios de Transporte|;|Transporte|
+|2131|;|Medios de Transporte|;|Transporte|
+|2133|;|Medios de Transporte|;|Transporte|
+|2346|;|Estaciones de servicio|;|Transporte|
+|2348|;|Medios de Transporte|;|Transporte|
+|2364|;|Estaciones de servicio|;|Transporte|
+|2367|;|Estaciones de servicio|;|Transporte|
+|2369|;|Medios de Transporte|;|Transporte|
+|2376|;|Parkings|;|Transporte|
+|2380|;|Medios de Transporte|;|Transporte|
+|2397|;|Parkings|;|Transporte|
+|2401|;|Estaciones de servicio|;|Transporte|
+|2412|;|Medios de Transporte|;|Transporte|
+|2420|;|Estaciones de servicio|;|Transporte|
+|2425|;|Medios de Transporte|;|Transporte|
+|2434|;|Estaciones de servicio|;|Transporte|
+|2520|;|Parkings|;|Transporte|
+|2521|;|Estaciones de servicio|;|Transporte|
+|2522|;|Estaciones de servicio|;|Transporte|
+|2523|;|Parkings|;|Transporte|
+|2524|;|Estaciones de servicio|;|Transporte|
+|2525|;|Estaciones de servicio|;|Transporte|
+|2527|;|Estaciones de servicio|;|Transporte|
+|2528|;|Estaciones de servicio|;|Transporte|
+|2529|;|Estaciones de servicio|;|Transporte|
+|2530|;|Estaciones de servicio|;|Transporte|
+|2531|;|Estaciones de servicio|;|Transporte|
+|2541|;|Estaciones de servicio|;|Transporte|
+|2543|;|Estaciones de servicio|;|Transporte|
+|2548|;|Hoteles|;|Alojamiento|
+|2946|;|Imagen, sonido e informática|;|Electrónica e Informática|
+|3357|;|Alquiler de vehículos|;|Transporte|
+|3381|;|Alquiler de vehículos|;|Transporte|
+|3389|;|Alquiler de vehículos|;|Transporte|
+|3548|;|Hoteles|;|Alojamiento|
+|4011|;|Medios de Transporte|;|Transporte|
+|4012|;|Medios de Transporte|;|Transporte|
+|4013|;|Hoteles|;|Alojamiento|
+|4111|;|Medios de Transporte|;|Transporte|
+|4131|;|Medios de Transporte|;|Transporte|
+|4132|;|Medios de Transporte|;|Transporte|
+|4133|;|Medios de Transporte|;|Transporte|
+|4214|;|Medios de Transporte|;|Transporte|
+|4457|;|Alquiler de vehículos|;|Transporte|
+|4784|;|Peajes|;|Transporte|
+|4785|;|Peajes|;|Transporte|
+|4786|;|Peajes|;|Transporte|
+|4787|;|Peajes|;|Transporte|
+|5211|;|Ferretería y Bricolaje|;|Hogar|
+|5251|;|Ferretería y Bricolaje|;|Hogar|
+|5311|;|Supermercados|;|Hipermercados y grandes superficies|
+|5313|;|Juguetería y ocio|;|Hipermercados y grandes superficies|
+|5314|;|Ferretería y Bricolaje|;|Hogar|
+|5331|;|Alimentación|;|Alimentación|
+|5333|;|Supermercados|;|Hipermercados y grandes superficies|
+|5335|;|Supermercados|;|Hipermercados y grandes superficies|
+|5338|;|Supermercados|;|Hipermercados y grandes superficies|
+|5422|;|Supermercados|;|Hipermercados y grandes superficies|
+|5441|;|Ropa y Complementos|;|Moda|
+|5499|;|Alimentación|;|Alimentación|
+|5531|;|Menaje|;|Hogar|
+|5533|;|Taller y Automoción|;|Transporte|
+|5541|;|Estaciones de servicio|;|Transporte|
+|5542|;|Estaciones de servicio|;|Transporte|
+|5543|;|Estaciones de servicio|;|Transporte|
+|5611|;|Ropa y Complementos|;|Moda|
+|5661|;|Zapaterías|;|Moda|
+|5681|;|Ropa y Complementos|;|Moda|
+|5712|;|Muebles y decoración|;|Hogar|
+|5714|;|Accesorios para Hogar|;|Hogar|
+|5722|;|Electrodomésticos|;|Hogar|
+|5732|;|Imagen, sonido e informática|;|Electrónica e Informática|
+|5733|;|Instrumentos musicales|;|Ocio|
+|5811|;|Restaurantes|;|Bares y Restaurantes|
+|5812|;|Restaurantes|;|Bares y Restaurantes|
+|5813|;|Bares y Cafeterias|;|Bares y Restaurantes|
+|5814|;|Comida Rapida|;|Bares y Restaurantes|
+|5911|;|Perfumería y cosmética|;|Cuidado y Belleza|
+|5939|;|Juguetería y ocio|;|Hipermercados y grandes superficies|
+|5944|;|Joyería y Relojería|;|Moda|
+|5945|;|Juguetería y ocio|;|Deportes y Juguetes|
+|5946|;|Imagen, sonido e informática|;|Electrónica e Informática|
+|5947|;|Juguetería y ocio|;|Deportes y Juguetes|
+|5951|;|Juguetería y ocio|;|Deportes y Juguetes|
+|5952|;|Ropa y Complementos|;|Moda|
+|5955|;|Moda Infantil|;|Moda|
+|5956|;|Comida Rapida|;|Bares y Restaurantes|
+|5957|;|Ropa y Complementos|;|Moda|
+|5959|;|Supermercados|;|Hipermercados y grandes superficies|
+|5967|;|Imagen, sonido e informática|;|Electrónica e Informática|
+|5992|;|Floristería|;|Hogar|
+|5995|;|Veterinarios|;|Mascotas|
+|5999|;|Heladerías|;|Bares y Restaurantes|
+|7011|;|Hoteles|;|Alojamiento|
+|7013|;|Hoteles|;|Alojamiento|
+|7014|;|Hoteles|;|Alojamiento|
+|7231|;|Peluquerías|;|Cuidado y Belleza|
+|7232|;|Fisioterapia y Masajes|;|Cuidado y Belleza|
+|7512|;|Alquiler de vehículos|;|Transporte|
+|7513|;|Alquiler de vehículos|;|Transporte|
+|7523|;|Parkings|;|Transporte|
+|7539|;|Taller y Automoción|;|Transporte|
+|7542|;|Estaciones de servicio|;|Transporte|
+|7997|;|Actividades deportivas|;|Cuidado y Belleza|
+|7999|;|Pubs y Copas|;|Ocio|
+|8062|;|Salud|;|Salud|
+|8911|;|Muebles y decoración|;|Hogar|
+|1360|;|Espectáculos y conciertos|;|Ocio|
+|1382|;|Ocio Temático|;|Ocio|
+|1432|;|Ocio Temático|;|Ocio|
+|1456|;|Ocio Temático|;|Ocio|
+|1483|;|Ocio Temático|;|Ocio|
+|1484|;|Ocio Temático|;|Ocio|
+|2360|;|Espectáculos y conciertos|;|Ocio|
+|2411|;|Museos|;|Ocio|
+|2432|;|Ocio Temático|;|Ocio|
+|2456|;|Ocio Temático|;|Ocio|
+|2483|;|Ocio Temático|;|Ocio|
+|2941|;|Espectáculos Deportivos|;|Ocio|
+|7941|;|Espectáculos Deportivos|;|Ocio|
+|7987|;|Ocio Temático|;|Ocio|
+|7988|;|Ocio Temático|;|Ocio|
+|7989|;|Ocio Temático|;|Ocio|
+|7995|;|Ocio Temático|;|Ocio|
+|8411|;|Museos|;|Ocio|
