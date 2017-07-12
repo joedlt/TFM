@@ -195,9 +195,11 @@ CREACCION DE TABLAS
 *************************Tabla Competencia*******************************************************
 
 CREATE TABLE "Comercios_Competencia" AS SELECT 
-"Dia" AS "Fecha","Hora","Dia_semana" AS "Dia","Mes","Año","Sub_sector","Cod_postal",SUM("Importe") AS "Competencia"
-FROM "Comercios_Tarjetas" GROUP BY
-"Dia","Hora","Dia_semana","Mes","Año","Sub_sector","Cod_postal";
+"Dia" AS "Fecha","Hora","Dia_semana" AS "Dia","Mes","Año","Sub_sector","Cod_postal",
+SUM("Importe") AS "Competencia" ,COUNT("Cod_tarjeta") AS "Operaciones",
+COUNT(DISTINCT"Cod_tarjeta") AS "Tarjetas", 
+COUNT(DISTINCT"Cod_comercio") AS "Comercios" FROM "Comercios_Tarjetas"
+GROUP BY "Dia","Hora","Dia_semana","Mes","Año","Sub_sector","Cod_postal";
 
 ************************************** Tabla Comercios_BMN****************************************
 
