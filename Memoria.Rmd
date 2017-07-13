@@ -1,0 +1,123 @@
+---
+title: "Memoria"
+author: "Jose"
+date: "7 de julio de 2017"
+output: 
+  html_document:
+    keep_md: true
+  ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Memoria TFM Commerce BMN
+
+##Introducción:
+
+En un entorno de competencia en el mercado Bancario, con precios bajos y márgenes estrechos, el incremento de volumen se vuelve una prioridad. En esta coyuntura  la incorporación de elementos diferenciales que añadan percepción de valor al cliente, sobre todo  en productos poco  diferenciados  como lo es el TPV (Terminal Punto de Venta), puede ser una ventaja competitiva, capaz de ayudar a incrementar esos volúmenes sin necesidad de entrar en guerra de precios que llevan a detrimento del margen.
+
+Las entidades financieras, cuentan con un gran volumen de datos con los que pueden proporcionar a sus clientes información relevante para sus negocios, y así generar un valor añadido a productos poco diferenciados, desmarcándose así de la competencia o al menos igualándola a Bancos que ya la han generado, como es el caso de BBVA.
+BBVA con su servicio  commerce  360 está poniendo  a disposición de sus clientes comercios con TPV BBVA, información relevante y diferenciadora para la toma de decisiones en su negocio.
+Por lo tanto la idea del proyecto es intentar generar una DEMO de una herramienta parecida en el Banco BMN, para poder venderla internamente para  un futuro desarrollo y puesta en producción.
+Mediante la información del  paso de tarjeta propia en TPV y la información recopilada por el TPV se generará  un informe que situé al comercio respecto a su competencia del mismo sector y código postal.
+Igualmente se realizará una segmentación básica (RFM) de las tarjetas que pasan por el TPV BMN del comercio y mediante la información de tarjetas propias de BMN  se obtendrá un perfil  de  los clientes con información de rango de edad y sexo para cada segmento obtenido.
+
+
+
+##Descripción de Datos:
+
+
+Para ello se seleccionó  los comercios que están ubicados en las tres poblaciones (Murcia, Granada y Palma de Mallorca) y sobre sectores específicos.
+Los datos son obtenidos mediante fuentes internas del banco y algunos ficheros complementarios obtenidos por internet  tales como: Direcciones  INE código censal, tabla ISO de Países. El resto son de fuentes internas del Banco mediante extracciones de su Dataware house. 
+
+Los ficheros .txt estan separados por punto y coma, los datos utilizados son:
+
+* 16 meses  de operaciones en comercios con tarjetas BMN. Contiene código de comercio, importe operación, hora, día , tarjeta y código sector( aprox 60 millones de líneas) 7GB
+
+* 2 años (24 meses)  de operaciones en TPV BMN. Contiene código de comercio, importe  operación , día, hora , tarjeta .( aprox 160 millones de líneas) 7GB.
+
+* Tabla de Direcciones de comercios propios BMN que contiene dirección libre escrita por empleado de oficina bancaria y el código postal, código de sector y fecha de alta. ( aprox  5.000 líneas).
+
+* Tabla BINES tarjetas (aprox 150.000 líneas) obtenido mediante fichero TAF enviado por Euro 6000.
+
+* Tabla de comercio no BMN que paso operaciones con tarjeta BMN. Contiene el código de comercio y el código postal .( aprox  38.000 líneas).
+
+* Tabla de clientes con tarjeta que contiene el código de cliente, edad, sexo (aprox  2 millones de líneas).
+
+* Tabla de direcciones por código censal y postal origen INE.
+
+El código de comercio es un código asignado por los servicios de medios de pago  para cada establecimiento comercial y es único.
+Las principales tablas de operaciones de tarjetas y de TPV’s  tienen datos de operaciones por minuto donde aparece;  comercio, tarjeta, sector del comercio, fecha y hora.
+
+Los datos son sensibles y por lo tanto no se publicarán, se pasará todo el proceso realizado con los datos para obtener el  dashboard  final.
+
+
+##Metodología:
+
+* Decidir los sectores de los comercios para el proyecto y clasificación de los mismos. Se creó una tabla con los códigos de los sectores de medios de pagos y se clasificó en Sector y Sub_sector, donde el subsector es una clasificación más fina del sector, ejemplo:Sector: Moda, Sub_sector: Zapaterías, se incluye tabla con los sectores clasificados y el codigo de sector medios de pago. Fichero:Sectores_TFM.txt.
+
+* Filtrar los comercios con códigos postales de las poblaciones de Murcia, Granada y Palma de Mallorca tanto para comercios BMN como para el resto.
+
+* Filtrar los comercios BMN por aquellos con más de 24 meses de antigüedad en BMN, para poder hacer una buena segmentación de sus clientes.
+
+* Limpiar las direcciones de los comercios para obtener su geo localización. La limpieza se hace en R y luego con VBA para crear un Kml con las geo coordenadas en google Earth. Los codigos estan en los ficheros:sql codigos censal, disenocallejero.docx, dir_comer_propios.R, VBA fichero klm.
+
+* Integrar los datos de la tabla comercios propios BMN con las geo coordenadas, se elimina la columna de la dirección y se incorporan las descripciones de Sector y Sub_sector.
+
+* Obtener tabla con códigos Bines de tarjetas nacionales, extranjeras y correspondiente país mediante tabla ISO de países.Fichero código: BINES.R.
+
+* Limpieza, filtrado (comercios zona de TFM, Sectores de TFM y comercios BMN +24 meses de antigüedad) y transformación de variables de las tablas de operaciones y carga en una base de datos local dado su tamaño.Ficheros códigos en Python mediante chunks (Codigos:Chunk_TPV_filtrado_DB.ipynb,Chunk_tarjetas_filtrado_DB.ipynb).
+
+* Preparar las tablas para la visualización en postgresql.Fichero Códigos sql :Carga_Tablas_BBDD.txt.
+
+* Extracción de 6 comercios para realizar la segmentación de sus clientes. Se usan 24 meses, los primeros 12 meses para entrenamiento del modelo y los otros 12 para su test y cross validation. Se toma 12 meses para eliminar la estacionalidad. Se realiza una segmentación mediante el modelo RFM (Recencia Frecuencia Monto) siendo este un buen acercamiento en la segmentación del Retail. Después  se realiza un Kmeans de las variables normalizadas. Fichero código en SQL Postgresql para extracción de la tabla y código en R para la segmentación (existe un fichero md "Zapateria_cod_30005.md" con un resumen de la metodología seguida en la segmentación de clientes de todos los comercios, para el resto solo se incluye el código en R). Ficheros códigos:  Restaurante_07001.R, Restauarnte_30005.R, Ropa_07002.R, Ropa_18005.R, Supermercado_18002.R, Zapateria_30005.R.
+
+* Unificación de los resultados con el resto de la información en postgresql  tabla con el código de tarjeta, segmento del segundo periodo y descripción del segmento y una variable de tipo de cliente (Nuevo, Se Mantiene o Perdido). Fichero código: Carga_Tablas_BBDD.txt.
+
+* Se unifican datos de tablas para ayudar a la creación de la visualización incluyendo la variable de código de cliente en la segmentación. Fichero códigos: Carga_Tablas_BBDD.txt.
+
+* Crear el dashboard en Tableau mediante conexión a postgresql, primero se filtra a dos comercios de los 6 escogidos para evitar el colapso de Tableau en el diseño de las hojas y el Dashboard, para luego aplicarlo a todos los comercios escogidos.
+
+
+## Descripción del portal comercios BMN:
+
+Como el proposito de este trabajo no es hacer una analisis concreto, sino la creación de una DEMO de un producto/servicio para su venta interna y futura puesta en producción. Se procede a la explicaion del portal.
+
+Se carga un fichero TFM_Commerce_BMN.twbx que puede ser visalizado mediante Tableau Reader que es gratuito o Tableau Desktop.
+
+El portal consta de 5 apartados de información. Para activar la informacion de cada comercio en la parte superior derecha se encuentra un menú de filtro donde se escoge el comercio, en este caso se ha puesto un código para anonimizar el comercio, dado que son datos sensibles. Una vez se ha escogido un comercio en la parte superior izquierda se muestra el Sub_sector del comercio y su código postal, cuando se pasa por encima de este el cursor del raton activa el mapa, donde se delimita el área del código postal de influencia del comercio.
+
+<img src="https://github.com/joedlt/Master2016/blob/master/Dashboard_1.png">
+
+En la imagen se ve que tambien se obtiene información del ultimo mes del comercio, tal como, Facturación, Número de operaciones, Número de tarjetas y Tarjetas BMN.
+
+En el siguiente recuadro se muestra el porcentaje de ventas realizadas con tarjetas bmn sobre el total de las ventas en los ultimos 12 meses.En el siguiente recuadro se informa del gasto de las tarjetas BMN en el mismo sub_sector y codigo postal en el último mes, Facturación, Numero de operaciones,Numero de comercios y Numero de tarjetas.
+
+En el apartado 2 se le da información al comercio sobre el patrón porcentual de sus ventas y se compara con la información de los consumos de las tarjetas BMN en el mismo sub_sector y codigo postal. Los datos utilizados son de los últimos 12 meses para desestacionalizar el patrón. Se muestra el patrón de los últimos 12 meses, el patrón semanal, el patron horario de lunes a viernes , el del sabado y el del domingo. Esta información es útil para observar si su comercio sigue el mismo patrón del sector, determinar periodos donde realizar campañas o para incrementar personal y poder dar un mejor serivicio en periodos de puntas.
+
+<img src="https://github.com/joedlt/Master2016/blob/master/Dashboard_2.png">
+
+<img src="https://github.com/joedlt/Master2016/blob/master/Dashboard_3.png">
+
+En el apartado 3 se presenta información sobre los clientes del comercio donde se divide en tres; clientes nuevos, clientes que se mantienen y clientes perdidos. Esta información se obtiene mediante las tarjetas que pasan por el TPV en los 24 meses anteriores. Las tarjetas que realizaron operaciones en los primeros 12 meses y no volvieron a realizar compras en los siguiente 12 meses son clientes perdidos, las tarjetas que realizan compras en ambos periodos son clientes que se mantiene y las tarjetas que no realizaron compras en los primeros 12 meses pero en los últimos 12 si son clientes nuevos. Igualmente se informa sobre los clientes con tarjetas no nacionales, el numero de clientes y su porcentaje sobre el total en los últimos 12 meses y porcentaje de compras respecto al total de ventas en los últimos 12 meses. Esta información es relevante en caso de que se tengan un alto porcentaje de clientes de alguna nacionalidad, ya sea para buscar personal con el idioma o para ofrecer una servicio mas personalizado.
+
+<img src="https://github.com/joedlt/Master2016/blob/master/Dashboard_4.png">
+
+En el apartado 4 se busca facilitar al comercio el perfil demográfico de sus clientes (Sexo y rango de edad) en los principales segmentos como son "Segmento Mayor Gasto Medio","Segmento que más compras hace" y "Segmento clientes Recientes". El perfil se obtiene de las tarjetas BMN que se encuentran en cada segmento y por ello se informa del porcentaje que representan en el segmento y la compra media que ese perfil realiza. Estos datos son útiles para conocer al cliente y mejorar la oferta para clientes de mayor gasto y los mas fieles.
+
+<img src="https://github.com/joedlt/Master2016/blob/master/Dashboard_5.png">
+
+<img src="https://github.com/joedlt/Master2016/blob/master/Dashboard_6.png">
+
+En el último apartado se presenta información sobre la distribución del gasto de los clientes del comercio con tarjeta BMN. Esta información da un prototipo de comportamiento, porcentaje del gasto que el cliente destina a su sector y los principales sectores de gasto de sus clientes. Se puede usar para campañas y promociones o para acuerdos con comercios de otros sectores donde sus clientes compran.
+
+
+<img src="https://github.com/joedlt/Master2016/blob/master/Dashboard_7.png">
+
+### Consideraciones###
+
+Si no se dispone de información sobre un apartado o algún recuadro en especial del comercio, el recuadro o apartado aparecerá en blanco, por lo tanto en el caso en el que el comercio pase pocas o ninguna tarjeta BMN no se podra realizar el perfilado del segmento ni la distribución de los gastos de sus clientes por sectores, o en el caso de que el comercio pase pocas operaciones en el TPV de BMN o ninguna no podra tener ningún tipo de información. Este seria un servicio para fidelizar al comercio ya que si quiere usar esta información debera pasar el mayor número de operaciones con tarjeta por el TPV de BMN para que la información contemple la mayor cantidad de clientes del comercio. Como es obvio este informe excluye la información de las ventas del comercio realizadas en efectivo.
+
+En el proyecto original se incluia la geolocalización de los comercios, pero dado que la visualización se va a compartir y para mantener el anonimato de los comercios se eliminan los datos de geolocalización y el mapa solo muestra el código postal de influencia del comercio. En el repositorio si se encuentra el codigo para obtener las geolocalizaciones.
+
