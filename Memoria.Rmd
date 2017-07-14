@@ -122,11 +122,4 @@ Si no se dispone de información sobre un apartado o algún recuadro en especial
 En el proyecto original se incluia la geolocalización de los comercios, pero dado que la visualización se va a compartir y para mantener el anonimato de los comercios se eliminan los datos de geolocalización y el mapa solo muestra el código postal de influencia del comercio. En el repositorio si se encuentra el codigo para obtener las geolocalizaciones.
 
 Herramientas utilizadas:
-Access 2013
-Excel 2013
-Python 3 y Jupyter notebook
-R 3.3.2
-R studio 1.0136
-Postgresql 9.6
-pgadmin 4
-Tableau 10.2
+Access 2013, Excel 2013, Python 3 con Jupyter notebook, R 3.3.2 con R studio 1.0136, Postgresql 9.6 con pgadmin 4 y Tableau 10.2.
