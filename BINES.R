@@ -83,7 +83,7 @@ BINES_TOTALES<-rbind(BINES_EUR_TOTAL,BINES_VISA_TOTAL,BINES_NAC_TOTAL)
 View(BINES_TOTALES)
 s<-BINES_TOTALES$BIN
 # encriptación de los datos de BINES para poder unificarlos con datos sensibles de tarjetas##
-# en este caso no pongo el comando usado mas no los valores de encriptación por seguridad de los datos#
+# en este caso pongo el comando usado mas no los valores de encriptación por seguridad de los datos#
 
 s1<-chartr('0123456789', 'XXXXXXXXX', s)
 BINES_TOTALES$BIN<-s1
