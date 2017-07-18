@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Memoria TFM Commerce BMN
 
-##Introducción:
+## Introducción:
 
 En un entorno de competencia en el mercado Bancario, con precios bajos y márgenes estrechos, el incremento de volumen se vuelve una prioridad. En esta coyuntura  la incorporación de elementos diferenciales que añadan percepción de valor al cliente, sobre todo  en productos poco  diferenciados  como lo es el TPV (Terminal Punto de Venta), puede ser una ventaja competitiva, capaz de ayudar a incrementar esos volúmenes sin necesidad de entrar en guerra de precios que llevan a detrimento del margen.
 
@@ -25,7 +25,7 @@ Igualmente se realizará una segmentación básica (RFM) de las tarjetas que pas
 
 
 
-##Descripción de Datos:
+## Descripción de Datos:
 
 
 Para ello se seleccionó  los comercios que están ubicados en las tres poblaciones (Murcia, Granada y Palma de Mallorca) y sobre sectores específicos.
@@ -53,7 +53,7 @@ Las principales tablas de operaciones de tarjetas y de TPV’s  tienen datos de 
 Los datos son sensibles y por lo tanto no se publicarán, se pasará todo el proceso realizado con los datos para obtener el  dashboard  final.
 
 
-##Metodología:
+## Metodología:
 
 * Decidir los sectores de los comercios para el proyecto y clasificación de los mismos. Se creó una tabla con los códigos de los sectores de medios de pagos y se clasificó en Sector y Sub_sector, donde el subsector es una clasificación más fina del sector, ejemplo:Sector: Moda, Sub_sector: Zapaterías, se incluye tabla con los sectores clasificados y el codigo de sector medios de pago. Fichero:Sectores_TFM.txt.
 
